@@ -12,4 +12,4 @@ dump=json.dumps(geocode)
 parsed=json.loads(dump)
 
 for item in range(0, (len(parsed)-2)):
-    print(parsed["features"][item]["properties"]["label"])
+    print(parsed["features"][item]["properties"]["label"], "\n", parsed["features"][item]["geometry"]["coordinates"])
