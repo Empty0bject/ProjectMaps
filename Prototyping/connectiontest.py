@@ -1,9 +1,10 @@
 import openrouteservice
-import requests
+import urllib.request
 
 connection=True
 while connection==True:
     try:
-        response = requests.get("https://openrouteservice.org", timeout=5)
-    except requests.ConnectionError:
+        urllib.request.urlopen("https://openrouteservice.org")
+        print("Connected")
+    except urllib.error.URLError:
         print("Connection lost")
