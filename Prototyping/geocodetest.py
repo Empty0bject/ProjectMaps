@@ -11,5 +11,5 @@ geocode=openrouteservice.geocode.pelias_search(client, inp, focus_point=None, re
 dump=json.dumps(geocode)
 parsed=json.loads(dump)
 
-for item in range(0, (len(parsed)-2)):
+for item in range(0, (len(parsed["features"]))):
     print(parsed["features"][item]["properties"]["label"], "\n", parsed["features"][item]["geometry"]["coordinates"])
