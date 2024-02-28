@@ -1,5 +1,5 @@
 #main.py
-from layout import plot_layout
+from LayoutApp import plot_layout
 import requests
 import sys
     
@@ -7,11 +7,11 @@ import sys
 class Main:
 	def __init__(self):
 		self.running=True
-		self.layout=plot_layout()
+		self.LayoutApp=plot_layout().run()
 
 	def run(self):
 		while self.running:
-			self.layout.homepage()
+			self.LayoutApp()
 			self.internet_connection()
 
 	def internet_connection(self):
