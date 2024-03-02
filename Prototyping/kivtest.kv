@@ -1,14 +1,25 @@
-MainWidget:
+Homepage:
 
-<BoxLayout>:
+<Homepage>:
     orientation: "vertical"
     Label:
-        text: "MapRoute"
+        text: root.my_text
+        font_name: "OpenDyslexic2/OpenDyslexic-Regular.otf"
+        font_size: "80dp"
     Button:
         text: "Plan route"
         size_hint: 0.8, 0.5
         pos_hint: {"center_x": 0.5}
+        on_press: root.on_button_click()
     Button:
         text: "Settings"
         size_hint: 0.8, 0.5
         pos_hint: {"center_x": 0.5}
+    TextInput:
+        id: my_text_input
+        size_hint: 0.8, 0.5
+        text: "Enter text"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        text: "Your name is:"+ root.text_input_str
