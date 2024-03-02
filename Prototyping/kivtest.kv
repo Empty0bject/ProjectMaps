@@ -1,0 +1,51 @@
+<SmoothLabel@Label>
+   background_color: (0,0,0,0)
+   background_normal: ''
+   back_color: (255,255,255,1)
+   border_radius: [18]
+   canvas.before:
+      Color:
+         rgba: (255,255,255,0.3)
+      RoundedRectangle:
+         size: self.size
+         pos: self.pos
+         radius: self
+
+.border_radius
+
+MoneyManager:
+    size_hint_y: None
+    height:150
+    Image:
+        pos: 0,350
+        source:'image4.png'
+        size: self.texture_size
+        allow_stretch: True
+        keep_ratio: False
+
+    SmoothLabel:
+        id: Total_Wealth
+        text: "Total Wealth :"
+        pos: 600,450
+        size_hint: (.3, .2)
+
+    SmoothLabel:
+        id: Cash
+        text: "Cash             :"
+        size_hint: (.3,0.2)
+        pos: 600,410
+
+    SmoothLabel:
+        id: savings
+        text: "Savings        : " +  str(root.savings)
+        size_hint: (.3,0.2)
+        pos: 600,370
+
+    BoxLayout:
+        SmoothLabel:
+            id: Date_lbl
+            text: root.fulldate  # root is the root of this rule, MoneyManager
+
+        Button:
+            text: 'Add to Savings'
+            on_release: root.add_savings()
