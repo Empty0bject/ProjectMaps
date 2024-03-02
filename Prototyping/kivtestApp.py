@@ -14,10 +14,6 @@ class Homepage(BoxLayout):
     def on_text_validate(self, widget):
         self.text_input_str=widget.text
         
-
-class Settings(BoxLayout):
-    pass
-
 class KivtestApp(App):
     pass
 
