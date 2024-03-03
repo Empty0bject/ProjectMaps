@@ -12,15 +12,15 @@ class Settings_Page(Screen):
     pass
 
 class RoutePlan_Page(Screen):
-    startingloc_info= ""
-    endingloc_info= ""
     RoutePl=RoutePl()
     def on_text_val_s(self, widget):
         self.startingloc_info=widget.text
     def on_text_val_d(self, widget):
         self.endingloc_info=widget.text
     def on_plan_press(self, widget):
-        self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
+        loc=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
+        startcoords, descoords=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
+        steps=self.RoutePl.RouteSteps(startcoords, descoords)
 
 class RouteJor_Page(Screen):
     pass
