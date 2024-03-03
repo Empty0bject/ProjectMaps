@@ -1,5 +1,5 @@
 #main.py
-from LayoutApp import Homepage
+from LayoutApp import RunApp
 import requests
 import sys
     
@@ -7,11 +7,11 @@ import sys
 class Main:
 	def __init__(self):
 		self.running=True
-		self.LayoutApp=Homepage().run()
+		self.Run_App=RunApp().run()
 
 	def run(self):
+		self.RunApp()
 		while self.running:
-			self.LayoutApp()
 			self.internet_connection()
 
 	def internet_connection(self):

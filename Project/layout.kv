@@ -1,0 +1,58 @@
+WindowManager:
+    Homepage:
+    Settings:
+    RoutePlan:
+    RouteJor:
+
+<Homepage>:
+    name: "hp"
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "MapRoute"
+            font_size: 80
+        Button:
+            text: "Plan route"
+            on_release:
+                app.root.current= "st"
+                root.manager.transition.direction= "left"
+        Button:
+            text: "Settings"
+            on_release:
+                app.root.current= "rp"
+                root.manager.transition.direction= "left"
+
+
+<Settings>:
+    name: "st"
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "🡸"
+            on_release:
+                app.root.current= "hp"
+                root.manager.transition.direction= "right"
+        Label:
+            text: "Settings"
+        Label:
+            text: "Fonts"
+        Label:
+            text: "Themes"
+        Label:
+            text: "Audio"
+
+
+<RoutePlan>:
+    name: "rp"
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "🡸"
+            on_release:
+                app.root.current= "hp"
+                root.manager.transition.direction= "left"
+
+<RouteJor>:
+    name: "rj"
+    BoxLayout:
+        orientation: "vertical"
