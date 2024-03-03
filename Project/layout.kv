@@ -1,8 +1,8 @@
 WindowManager:
     Homepage:
-    Settings:
-    RoutePlan:
-    RouteJor:
+    Settings_Page:
+    RoutePlan_Page:
+    RouteJor_Page:
 
 <Homepage>:
     name: "hp"
@@ -10,28 +10,22 @@ WindowManager:
         orientation: "vertical"
         Label:
             text: "MapRoute"
-            font_size: 80
         Button:
             text: "Plan route"
             on_release:
-                app.root.current= "st"
+                app.root.current= "rp"
                 root.manager.transition.direction= "left"
         Button:
             text: "Settings"
             on_release:
-                app.root.current= "rp"
+                app.root.current= "st"
                 root.manager.transition.direction= "left"
 
 
-<Settings>:
+<Settings_Page>:
     name: "st"
     BoxLayout:
         orientation: "vertical"
-        Button:
-            text: "🡸"
-            on_release:
-                app.root.current= "hp"
-                root.manager.transition.direction= "right"
         Label:
             text: "Settings"
         Label:
@@ -40,19 +34,41 @@ WindowManager:
             text: "Themes"
         Label:
             text: "Audio"
+        Button:
+            text: "Back"
+            on_release:
+                app.root.current= "hp"
+                root.manager.transition.direction= "right"
 
 
-<RoutePlan>:
+<RoutePlan_Page>:
     name: "rp"
     BoxLayout:
         orientation: "vertical"
+        Label:
+            text: "Plan your route"
+        TextInput:
+            id: startingloc_info
+            text: "Enter starting location"
+            multiline: False
+            on_text_validate: root.on_text_val_s(self)
+        TextInput:
+            id: endingloc_info
+            text: "Enter destination"
+            multiline: False
+            on_text_validate: root.on_text_val_d(self)
         Button:
-            text: "🡸"
+            text: "Plan"
+            on_release:
+                root.on_plan_press(self)
+        Button:
+            text: "Back"
             on_release:
                 app.root.current= "hp"
-                root.manager.transition.direction= "left"
+                root.manager.transition.direction= "right"
 
-<RouteJor>:
+
+<RouteJor_Page>:
     name: "rj"
     BoxLayout:
         orientation: "vertical"
