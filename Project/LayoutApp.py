@@ -26,17 +26,25 @@ class RoutePlan_Page(Screen):
         steps=self.RoutePl.RouteSteps(startcoords, descoords)
 
 class RouteJor_Page(Screen):
-    current_step=StringProperty("Current step")
-    count=0
+    count=-1
     try:
         steps=steps
     except:
         steps=[""]
-    def nextstep_press(self):
-        try:
-            self.current_step=str(steps[self.count])
-            self.count+=1
-        except:
+    print(steps)
+    
+    current_step=StringProperty(steps[0])
+    def step_press(self, change):
+        if self.count<=-2:
+            count+=1
+        if self.count!=len(steps):
+            try:
+                self.count+=change
+                self.current_step=str(steps[self.count])
+
+            except:
+                pass
+        else:
             self.current_step="You have reached your destination!"
         
 

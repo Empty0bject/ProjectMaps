@@ -81,4 +81,8 @@ WindowManager:
         Button:
             text: "Next step"
             on_release:
-                root.nextstep_press()
+                root.step_press(1)
+        Button:
+            text: "Previous step"
+            on_release:
+                root.step_press(-1)

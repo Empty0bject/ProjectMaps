@@ -6,13 +6,12 @@ import sys
 
 class Main:
 	def __init__(self):
-		self.running=True
 		self.Run_App=RunApp().run()
 
 	def run(self):
+		self.internet_connection()
 		self.RunApp()
-		while self.running:
-			self.internet_connection()
+		
 
 	def internet_connection(self):
 		try:
