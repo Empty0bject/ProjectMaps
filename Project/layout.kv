@@ -61,6 +61,8 @@ WindowManager:
             text: "Plan"
             on_release:
                 root.on_plan_press(self)
+                app.root.current= "rj"
+                root.manager.transition.direction= "right"
         Button:
             text: "Back"
             on_release:
@@ -72,3 +74,11 @@ WindowManager:
     name: "rj"
     BoxLayout:
         orientation: "vertical"
+        Label:
+            text: "Route jorney"
+        Label:
+            text: "Current step is: "+ root.current_step
+        Button:
+            text: "Next step"
+            on_release:
+                root.nextstep_press()
