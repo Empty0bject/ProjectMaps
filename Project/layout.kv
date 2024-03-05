@@ -4,6 +4,9 @@ WindowManager:
     RoutePlan_Page:
     RouteJor_Page:
 
+<Widget>
+    font_name: root.font_selection
+
 <Homepage>:
     name: "hp"
     BoxLayout:
@@ -30,6 +33,14 @@ WindowManager:
             text: "Settings"
         Label:
             text: "Fonts"
+        Button:
+            text: "Standard"
+            on_release:
+                root.on_font_press(0)
+        Button:
+            text: "Dyslexia friendly"
+            on_release:
+                root.on_font_press(1)
         Label:
             text: "Themes"
         Label:
