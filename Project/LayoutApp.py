@@ -4,19 +4,26 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import StringProperty
 from RoutePlan import RoutePl
+from kivy.core.text import LabelBase, DEFAULT_FONT
 from settings import Settings
+
+class Settings_Page(Screen):
+    pass
+    #Settings=Settings()
+    #def on_font_press(self, selection):
+    #    print("button pressed")
+    #    current_settings[0]= self.Settings.Font(selection)
+    #    print("font changed")
+    #    print(current_settings[0])
+    #    RunApp().run()
 
 class Homepage(Screen):
     pass
-
-class Settings_Page(Screen):
-    Settings=Settings()
-    def on_font_press(self, selection):
-        settings_store[0]=self.Settings.Font(selection)
+    #current_settings=current_settings
 
 class RoutePlan_Page(Screen):
-    font_selection=settings_store[0]
     RoutePl=RoutePl()
+    #current_settings=current_settings
 
     #accesses the address info input by the user
     def on_text_val_s(self, widget):
@@ -32,6 +39,7 @@ class RoutePlan_Page(Screen):
         #returns the steps for the directions in an array format
         global steps
         steps=self.RoutePl.RouteSteps(startcoords, descoords)
+        print(steps)
 
 class RouteJor_Page(Screen):
     count=-1
@@ -57,8 +65,8 @@ class RouteJor_Page(Screen):
 class WindowManager(ScreenManager):
     pass
 
-global settings_store
-settings_store=["standard"]
+#global current_settings
+#current_settings=["Roboto/Roboto-Regular.ttf"]
 kv=Builder.load_file('layout.kv')
 
 class RunApp(App):

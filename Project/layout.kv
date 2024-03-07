@@ -4,22 +4,22 @@ WindowManager:
     RoutePlan_Page:
     RouteJor_Page:
 
-<Widget>
-    font_name: root.font_selection
-
 <Homepage>:
     name: "hp"
     BoxLayout:
         orientation: "vertical"
         Label:
             text: "MapRoute"
+            #font_name: root.current_settings[0]
         Button:
             text: "Plan route"
+            #font_name: root.current_settings[0]
             on_release:
                 app.root.current= "rp"
                 root.manager.transition.direction= "left"
         Button:
             text: "Settings"
+            #font_name: root.current_settings[0]
             on_release:
                 app.root.current= "st"
                 root.manager.transition.direction= "left"
@@ -35,12 +35,12 @@ WindowManager:
             text: "Fonts"
         Button:
             text: "Standard"
-            on_release:
-                root.on_font_press(0)
+            #on_release:
+            #    root.on_font_press("standard")
         Button:
             text: "Dyslexia friendly"
-            on_release:
-                root.on_font_press(1)
+            #on_release:
+            #    root.on_font_press("dyslexic")
         Label:
             text: "Themes"
         Label:
