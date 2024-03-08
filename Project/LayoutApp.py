@@ -22,24 +22,36 @@ class Homepage(Screen):
     #current_settings=current_settings
 
 class RoutePlan_Page(Screen):
+    error_disp=StringProperty("")
     RoutePl=RoutePl()
+    inp_check=[0, 0]
+    print(inp_check)
     #current_settings=current_settings
 
     #accesses the address info input by the user
     def on_text_val_s(self, widget):
+        self.inp_check[0]=1
         self.startingloc_info=widget.text
+        print(self.inp_check)
     def on_text_val_d(self, widget):
+        self.inp_check[1]=1
         self.endingloc_info=widget.text
+        print(self.inp_check)
     
     def on_plan_press(self, widget):
-        #returns address information
-        loc=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
-        #returns the starting and ending coordinates of the addresses
-        startcoords, descoords=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
-        #returns the steps for the directions in an array format
-        global steps
-        steps=self.RoutePl.RouteSteps(startcoords, descoords)
-        print(steps)
+        if self.inp_check!=[1, 1]:
+            print("requirements not met")
+            error_displ="Please enter a start/desination"
+        elif self.inp_check==[0, 0]:
+            #returns address information
+            loc=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
+            #returns the starting and ending coordinates of the addresses
+            startcoords, descoords=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
+            #returns the steps for the directions in an array format
+            global steps
+            steps=self.RoutePl.RouteSteps(startcoords, descoords)
+            print(steps)
+        print("funtion complete")
 
 class RouteJor_Page(Screen):
     count=-1

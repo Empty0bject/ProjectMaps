@@ -68,6 +68,8 @@ WindowManager:
             text: "Enter destination"
             multiline: False
             on_text_validate: root.on_text_val_d(self)
+        Label:
+            text: root.error_disp
         Button:
             text: "Plan"
             on_release:
