@@ -8,18 +8,36 @@ WindowManager:
     name: "hp"
     BoxLayout:
         orientation: "vertical"
+        padding:50
+        spacing:25
+        canvas.before:
+            Color:
+                rgba: kivy.utils.get_color_from_hex("d8dee8")
+            Rectangle:
+                pos:self.pos
+                size:self.size
         Label:
             text: "MapRoute"
-            #font_name: root.current_settings[0]
+            font_size: "80dp"
+            color: 0, 0, 0, 1
+
         Button:
             text: "Plan route"
-            #font_name: root.current_settings[0]
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 app.root.current= "rp"
                 root.manager.transition.direction= "left"
         Button:
             text: "Settings"
-            #font_name: root.current_settings[0]
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 app.root.current= "st"
                 root.manager.transition.direction= "left"
@@ -29,24 +47,25 @@ WindowManager:
     name: "st"
     BoxLayout:
         orientation: "vertical"
+        padding:50
+        spacing:25
+        canvas.before:
+            Color:
+                rgba: kivy.utils.get_color_from_hex("d8dee8")
+            Rectangle:
+                pos:self.pos
+                size:self.size
         Label:
             text: "Settings"
-        Label:
-            text: "Fonts"
-        Button:
-            text: "Standard"
-            #on_release:
-            #    root.on_font_press("standard")
-        Button:
-            text: "Dyslexia friendly"
-            #on_release:
-            #    root.on_font_press("dyslexic")
-        Label:
-            text: "Themes"
-        Label:
-            text: "Audio"
+            font_size: "80dp"
+            color: 0, 0, 0, 1
         Button:
             text: "Back"
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 app.root.current= "hp"
                 root.manager.transition.direction= "right"
@@ -56,46 +75,101 @@ WindowManager:
     name: "rp"
     BoxLayout:
         orientation: "vertical"
+        padding:50
+        spacing:25
+        canvas.before:
+            Color:
+                rgba: kivy.utils.get_color_from_hex("d8dee8")
+            Rectangle:
+                pos:self.pos
+                size:self.size
         Label:
             text: "Plan your route"
+            font_size: "80dp"
+            color: 0, 0, 0, 1
         TextInput:
-            id: startingloc_info
+            id: startloc
             text: "Enter starting location"
+            font_size: "25dp"
+            color: 0, 0, 0, 1
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             multiline: False
             on_text_validate: root.on_text_val_s(self)
+        Label:
+            text: root.start_display
+            font_size: "20dp"
+            color: 0, 0, 0, 1
         TextInput:
-            id: endingloc_info
+            id: desloc
             text: "Enter destination"
+            font_size: "25dp"
+            color: 0, 0, 0, 1
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             multiline: False
             on_text_validate: root.on_text_val_d(self)
         Label:
-            text: root.error_disp
+            text: root.des_display
+            font_size: "20dp"
+            color: 0, 0, 0, 1
         Button:
             text: "Plan"
+            font_size: "40dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 root.on_plan_press(self)
                 app.root.current= "rj"
                 root.manager.transition.direction= "right"
         Button:
             text: "Back"
+            font_size: "40dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 app.root.current= "hp"
                 root.manager.transition.direction= "right"
-
 
 <RouteJor_Page>:
     name: "rj"
     BoxLayout:
         orientation: "vertical"
+        padding:50
+        spacing:25
+        canvas.before:
+            Color:
+                rgba: kivy.utils.get_color_from_hex("d8dee8")
+            Rectangle:
+                pos:self.pos
+                size:self.size
         Label:
             text: "Route jorney"
+            font_size: "80dp"
+            color: 0, 0, 0, 1
         Label:
             text: "Current step is: "+ root.current_step
+            font_size: "40dp"
+            color: 0, 0, 0, 1
         Button:
             text: "Next step"
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 root.step_press(1)
         Button:
             text: "Previous step"
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+            background_color: kivy.utils.get_color_from_hex("8b919d")
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5}
             on_release:
                 root.step_press(-1)

@@ -9,49 +9,32 @@ from settings import Settings
 
 class Settings_Page(Screen):
     pass
-    #Settings=Settings()
-    #def on_font_press(self, selection):
-    #    print("button pressed")
-    #    current_settings[0]= self.Settings.Font(selection)
-    #    print("font changed")
-    #    print(current_settings[0])
-    #    RunApp().run()
 
 class Homepage(Screen):
     pass
-    #current_settings=current_settings
 
 class RoutePlan_Page(Screen):
-    error_disp=StringProperty("")
+    start_display, des_display= StringProperty("start test"), StringProperty("des test")
+    startloc, desloc= "", ""
     RoutePl=RoutePl()
-    inp_check=[0, 0]
-    print(inp_check)
-    #current_settings=current_settings
+    error_disp=StringProperty("")
 
     #accesses the address info input by the user
     def on_text_val_s(self, widget):
-        self.inp_check[0]=1
-        self.startingloc_info=widget.text
-        print(self.inp_check)
+        self.startloc=widget.text
+        startloc_addresses=self.RoutePl.AddressLookup(self.startloc)
+        self.start_display=startloc_addresses[0]
+        
     def on_text_val_d(self, widget):
-        self.inp_check[1]=1
-        self.endingloc_info=widget.text
-        print(self.inp_check)
-    
-    def on_plan_press(self, widget):
-        if self.inp_check!=[1, 1]:
-            print("requirements not met")
-            error_displ="Please enter a start/desination"
-        elif self.inp_check==[0, 0]:
-            #returns address information
-            loc=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
-            #returns the starting and ending coordinates of the addresses
-            startcoords, descoords=self.RoutePl.GeoLoc(self.startingloc_info, self.endingloc_info)
-            #returns the steps for the directions in an array format
-            global steps
-            steps=self.RoutePl.RouteSteps(startcoords, descoords)
-            print(steps)
-        print("funtion complete")
+        self.desloc=widget.text
+        desloc_addresses=self.RoutePl.AddressLookup(self.desloc)
+        self.des_display=desloc_addresses[0]
+
+    def on_plan_press(self, widget): 
+        startcoords, descoords=self.RoutePl.GeoLoc(self.startloc, self.desloc)
+        global steps
+        steps=self.RoutePl.RouteSteps(startcoords, descoords)
+        print(steps)
 
 class RouteJor_Page(Screen):
     count=-1
@@ -59,11 +42,11 @@ class RouteJor_Page(Screen):
         steps=steps
     except:
         steps=[""]
-    print(steps)
     current_step=StringProperty(steps[0])
+
     def step_press(self, change):
         if self.count<=-2:
-            count+=1
+            count+=2
         if self.count!=len(steps):
             try:
                 self.count+=change
@@ -72,13 +55,11 @@ class RouteJor_Page(Screen):
                 pass
         else:
             self.current_step="You have reached your destination!"
-        
+
 
 class WindowManager(ScreenManager):
     pass
 
-#global current_settings
-#current_settings=["Roboto/Roboto-Regular.ttf"]
 kv=Builder.load_file('layout.kv')
 
 class RunApp(App):
