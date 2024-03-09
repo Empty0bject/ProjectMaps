@@ -76,7 +76,7 @@ WindowManager:
     BoxLayout:
         orientation: "vertical"
         padding:50
-        spacing:25
+        spacing:10
         canvas.before:
             Color:
                 rgba: kivy.utils.get_color_from_hex("d8dee8")
@@ -85,7 +85,11 @@ WindowManager:
                 size:self.size
         Label:
             text: "Plan your route"
-            font_size: "80dp"
+            font_size: "60dp"
+            color: 0, 0, 0, 1
+        Label:
+            text: root.error_display
+            font_size: "20dp"
             color: 0, 0, 0, 1
         TextInput:
             id: startloc
@@ -122,8 +126,8 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release:
                 root.on_plan_press(self)
-                app.root.current= "rj"
-                root.manager.transition.direction= "right"
+                #app.root.current= "rj"
+                #root.manager.transition.direction= "right"
         Button:
             text: "Back"
             font_size: "40dp"

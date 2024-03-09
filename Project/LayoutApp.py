@@ -14,27 +14,45 @@ class Homepage(Screen):
     pass
 
 class RoutePlan_Page(Screen):
-    start_display, des_display= StringProperty("start test"), StringProperty("des test")
-    startloc, desloc= "", ""
     RoutePl=RoutePl()
-    error_disp=StringProperty("")
+    start_display, des_display= StringProperty(""), StringProperty("")
+    startloc, desloc= "", ""
+    error_display=StringProperty("")
 
-    #accesses the address info input by the user
+    error_check=[0, 0]
+
+    
     def on_text_val_s(self, widget):
         self.startloc=widget.text
-        startloc_addresses=self.RoutePl.AddressLookup(self.startloc)
-        self.start_display=startloc_addresses[0]
+        try:
+            startloc_addresses=self.RoutePl.AddressLookup(self.startloc)
+            self.start_display=startloc_addresses[0]
+            self.error_check[0]=1
+            self.error_display=""
+        except:
+            self.error_display="That address cant be found, please check your inputs"
+            self.error_check[0]=0
         
     def on_text_val_d(self, widget):
         self.desloc=widget.text
-        desloc_addresses=self.RoutePl.AddressLookup(self.desloc)
-        self.des_display=desloc_addresses[0]
+        try:
+            desloc_addresses=self.RoutePl.AddressLookup(self.desloc)
+            self.des_display=desloc_addresses[0]
+            self.error_check[1]=0
+            self.error_display=""
+        except:
+            self.error_display="That address cant be found, please check your inputs"
+            self.error_check[1]=0
 
-    def on_plan_press(self, widget): 
-        startcoords, descoords=self.RoutePl.GeoLoc(self.startloc, self.desloc)
-        global steps
-        steps=self.RoutePl.RouteSteps(startcoords, descoords)
-        print(steps)
+    def on_plan_press(self, widget):
+        if self.error_check==[1, 1]:
+            startcoords, descoords=self.RoutePl.GeoLoc(self.startloc, self.desloc)
+            global steps
+            steps=self.RoutePl.RouteSteps(startcoords, descoords)
+            print(steps)
+        else:
+            print("error caught")
+        
 
 class RouteJor_Page(Screen):
     count=-1

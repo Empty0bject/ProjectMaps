@@ -1,4 +1,3 @@
-#main.py
 from LayoutApp import RunApp
 import requests
 import sys
