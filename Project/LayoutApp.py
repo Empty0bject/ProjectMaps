@@ -5,13 +5,13 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import StringProperty
 from RoutePlan import RoutePl
 from kivy.core.text import LabelBase, DEFAULT_FONT
-from settings import Settings
 
 class Settings_Page(Screen):
     pass
 
 class Homepage(Screen):
     pass
+
 
 class RoutePlan_Page(Screen):
     RoutePl=RoutePl()
@@ -20,6 +20,7 @@ class RoutePlan_Page(Screen):
     error_display=StringProperty("")
 
     error_check=[0, 0]
+    state="False"
 
     
     def on_text_val_s(self, widget):
@@ -38,7 +39,7 @@ class RoutePlan_Page(Screen):
         try:
             desloc_addresses=self.RoutePl.AddressLookup(self.desloc)
             self.des_display=desloc_addresses[0]
-            self.error_check[1]=0
+            self.error_check[1]=1
             self.error_display=""
         except:
             self.error_display="That address cant be found, please check your inputs"
@@ -50,9 +51,12 @@ class RoutePlan_Page(Screen):
             global steps
             steps=self.RoutePl.RouteSteps(startcoords, descoords)
             print(steps)
+            self.state="True"
         else:
             print("error caught")
-        
+            self.state="False"
+        print(self.state)
+
 
 class RouteJor_Page(Screen):
     count=-1
@@ -63,8 +67,6 @@ class RouteJor_Page(Screen):
     current_step=StringProperty(steps[0])
 
     def step_press(self, change):
-        if self.count<=-2:
-            count+=2
         if self.count!=len(steps):
             try:
                 self.count+=change

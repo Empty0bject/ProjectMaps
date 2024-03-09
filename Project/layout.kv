@@ -126,8 +126,9 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release:
                 root.on_plan_press(self)
-                #app.root.current= "rj"
-                #root.manager.transition.direction= "right"
+                if root.state == "True": \
+                app.root.current= "rj" 
+                root.manager.transition.direction= "right"
         Button:
             text: "Back"
             font_size: "40dp"
