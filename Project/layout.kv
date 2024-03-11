@@ -1,6 +1,6 @@
+#Manages window navigation
 WindowManager:
     Homepage:
-    Settings_Page:
     RoutePlan_Page:
     RouteJor_Page:
 
@@ -10,6 +10,7 @@ WindowManager:
         orientation: "vertical"
         padding:50
         spacing:25
+        #Changes background colour
         canvas.before:
             Color:
                 rgba: kivy.utils.get_color_from_hex("d8dee8")
@@ -28,47 +29,20 @@ WindowManager:
             background_color: kivy.utils.get_color_from_hex("8b919d")
             size_hint: 0.8, 0.5
             pos_hint: {"center_x": 0.5}
+            #Navigates to the page specified
             on_release:
                 app.root.current= "rp"
                 root.manager.transition.direction= "left"
         Button:
-            text: "Settings"
+            text: "Exit"
             font_size: "60dp"
             color: 0, 0, 0, 1
             background_color: kivy.utils.get_color_from_hex("8b919d")
             size_hint: 0.8, 0.5
             pos_hint: {"center_x": 0.5}
             on_release:
-                app.root.current= "st"
-                root.manager.transition.direction= "left"
-
-
-<Settings_Page>:
-    name: "st"
-    BoxLayout:
-        orientation: "vertical"
-        padding:50
-        spacing:25
-        canvas.before:
-            Color:
-                rgba: kivy.utils.get_color_from_hex("d8dee8")
-            Rectangle:
-                pos:self.pos
-                size:self.size
-        Label:
-            text: "Settings"
-            font_size: "80dp"
-            color: 0, 0, 0, 1
-        Button:
-            text: "Back"
-            font_size: "60dp"
-            color: 0, 0, 0, 1
-            background_color: kivy.utils.get_color_from_hex("8b919d")
-            size_hint: 0.8, 0.5
-            pos_hint: {"center_x": 0.5}
-            on_release:
-                app.root.current= "hp"
-                root.manager.transition.direction= "right"
+                root.app_exit(self)
+                
 
 
 <RoutePlan_Page>:
