@@ -87,7 +87,11 @@ class RouteJor_Page(Screen):
         if self.count!=len(steps):
             #Steps has changed by the amount given as a parameter and the new current step is then displayed
             self.count+=change
-            self.current_step=str(steps[self.count])
+            try:
+                
+                self.current_step=str(steps[self.count])
+            except:
+                pass
         else:
             self.current_step="You have reached your destination!"
 
